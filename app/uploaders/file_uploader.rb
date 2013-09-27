@@ -28,7 +28,7 @@ class FileUploader < CarrierWave::Uploader::Base
     # 安装7z   brew install unrar
     # /Users/ivan/.homebrew/Cellar/unrar/4.2.4/bin/unrar x
     # 解压
-    `unzip -n "#{current_path}" -d "#{File.dirname(current_path)}"`
+    `unzip -n "#{current_path}" -d "#{File.dirname(current_path)}/#{basename}"`
 
     file_path =  "#{File.dirname(current_path)}/#{basename}"
     Dir[File.join(file_path, '**', '**')].each do |file|
