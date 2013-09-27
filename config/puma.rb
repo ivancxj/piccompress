@@ -13,6 +13,6 @@ stdout_redirect  File.join(tmp_path, 'puma.out.log'), File.join(tmp_path, 'puma.
 
 threads 0, 10
 
-bind 'tcp://0.0.0.0:5002'
+bind 'tcp://0.0.0.0:5000'
 
 workers 0
