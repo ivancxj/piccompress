@@ -1,6 +1,6 @@
 #!/usr/bin/env puma
 
-environment 'production'
+#environment 'production'
 daemonize true
 
 wd          = File.expand_path('../../', __FILE__)
