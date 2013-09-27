@@ -1,0 +1,6 @@
+= simple_form_for(@zip_file) do |f|
+  = f.error_notification
+  %fieldset
+    = f.input :name, :label => '名称(可以不填)'
+    = f.input :file, :label => '原图zip文件',:as=>:file
+    = f.submit '保存' , :class => 'btn btn-primary'

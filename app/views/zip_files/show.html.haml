@@ -1,0 +1,13 @@
+%table.table.table-condensed.table-striped
+  %thead
+    %tr
+      %th.header 原文件下载地址
+      %th.header 压缩后下载地址
+      %th
+  %tbody
+    %tr
+      %td
+        = link_to '下载', @zip_file.file.url ,:class=>'pjax'
+      %td
+        - if @zip_file.download
+          = link_to '下载', "/#{@zip_file.download}"

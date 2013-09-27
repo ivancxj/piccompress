@@ -1,0 +1,26 @@
+= link_to '上传压缩文件', new_zip_file_path,:class=>'pjax'
+- if @zip_files.present?
+  %table.table.table-condensed.table-striped
+    %thead
+      %tr
+        %th.header 序号
+        %th.header 时间
+        %th.header 名称
+        %th.header 原文件地址
+        %th.header 压缩后地址
+    %tbody
+      - @zip_files.each do |zip_file|
+        %tr
+          %td.string_field= zip_file.id
+          %td.string_field= zip_file.created_at
+          %td
+            - if zip_file.name
+              = zip_file.name
+          %td
+            = link_to '下载', zip_file.file.url
+          %td
+            - if zip_file.download
+              = link_to '下载', zip_file.download
+
+
+
