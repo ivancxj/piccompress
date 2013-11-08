@@ -46,10 +46,10 @@ class FileUploader < CarrierWave::Uploader::Base
           if max <= 150
             # 图片很小就不要处理
           elsif max <= 1000
-            `gm mogrify -resize 99% "#{file}" `
+            `gm mogrify -resize 100% "#{file}" `
           else
             size = (100000/max.to_f).round
-            size = 99 if size > 99   # 不能超过100压缩
+            size = 100 if size > 99   # 不能超过100压缩
             p "max=#{max} size=#{size}"
             `gm mogrify -resize #{size}% "#{file}" `
           end
