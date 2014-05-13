@@ -5,7 +5,8 @@ module GjbApi
 
     before do
       my_logger ||= Logger.new("#{Rails.root}/log/my.log")
-      my_logger.info env
+      # my_logger.info env
+      my_logger.info env['REMOTE_ADDR']
     end
 
 
