@@ -13,6 +13,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'haml'
 gem 'haml-rails'
+gem 'grape'
 
 gem 'rubyzip'  , '< 1.0.0'
 #gem 'rails3-generators'

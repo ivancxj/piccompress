@@ -35,24 +35,29 @@ class FileUploader < CarrierWave::Uploader::Base
       if File.file? file
         base =  File.extname(file).downcase
         if base.eql? '.jpg' or base.eql? '.jpeg' or base.eql? '.png'
-          dimensions = MiniMagick::Image.open(file)
+          begin
+            dimensions = MiniMagick::Image.open(file)
 
-          # 取宽高的最大值
-          max = dimensions['width']
-          if max < dimensions['height']
-            max = dimensions['height']
+            # 取宽高的最大值
+            max = dimensions['width']
+            if max < dimensions['height']
+              max = dimensions['height']
+            end
+
+            if max <= 150
+              # 图片很小就不要处理
+            elsif max <= 1000
+              `gm mogrify -resize 100% "#{file}" `
+            else
+              size = (100000/max.to_f).round
+              size = 100 if size > 99   # 不能超过100压缩
+              puts "max=#{max} size=#{size}"
+              `gm mogrify -resize #{size}% "#{file}" `
+            end
+          rescue
+            put '出错'
           end
 
-          if max <= 150
-            # 图片很小就不要处理
-          elsif max <= 1000
-            `gm mogrify -resize 100% "#{file}" `
-          else
-            size = (100000/max.to_f).round
-            size = 100 if size > 99   # 不能超过100压缩
-            p "max=#{max} size=#{size}"
-            `gm mogrify -resize #{size}% "#{file}" `
-          end
 
         end
       end
